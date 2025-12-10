@@ -1,10 +1,18 @@
-# 💗 Special Proposal Website
+# Proposal Website 💖
 
-This is a personal project made with love.
+This is a cute interactive proposal website made with HTML, CSS, and JavaScript.  
 
-🌸 A cute little website designed to express feelings.
-🌙 Created with pure emotions, honesty, and soft vibes.
-💌 Dedicated to someone very special named **Shubham**.
+## Features:
+- Shows a cute photo
+- Plays a “Yayy” sound when you click “Yes 💖”
+- Displays playful questions and answers
+- Floating hearts animation
 
-✨ This website is just a small way to say:
-**You mean a lot to me.**
+## How to view:
+Open this GitHub Pages link:  
+[Proposal Website](https://sgxpd.github.io/Proposalll/)
+
+## Files in this repo:
+- `index.html` → main webpage
+- `photo.jpg` → the photo displayed
+- `yayy.mp3` → the sound played when clicking “Yes 💖”
