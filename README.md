@@ -13,6 +13,6 @@ Open this GitHub Pages link:
 [Proposal Website](https://sgxpd.github.io/Proposalll/)
 
 ## Files in this repo:
-- `index.html` → main webpage
+- `index.html` → main webpage 
 - `photo.jpg` → the photo displayed
 - `yayy.mp3` → the sound played when clicking “Yes 💖”
