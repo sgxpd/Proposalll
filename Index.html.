@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proposal Website</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', sans-serif;
+      text-align: center;
+      background: #ffe6f0;
+      padding: 50px;
+    }
+    img {
+      width: 250px;
+      border-radius: 15px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    img:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+    button {
+      margin: 10px;
+      padding: 12px 25px;
+      font-size: 20px;
+      border: none;
+      border-radius: 12px;
+      background: #ff99cc;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+      background: #ff66aa;
+    }
+    .question {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #cc3366;
+      min-height: 40px;
+    }
+    .heart {
+      color: red;
+      font-size: 30px;
+      position: absolute;
+      animation: floatUp 1s ease-out forwards;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(1);}
+      100% { opacity: 0; transform: translateY(-100px) scale(1.5);}
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Will you be mine? 💖</h1>
+  <img src="photo.jpg" alt="Cute photo" id="photo">
+  
+  <button id="startButton">Yes 💖</button>
+  <audio id="yayySound" src="yayy.mp3"></audio>
+
+  <div class="question" id="questionBox"></div>
+  <div id="answerButtons"></div>
+
+  <script>
+    const startButton = document.getElementById('startButton');
+    const sound = document.getElementById('yayySound');
+    const questionBox = document.getElementById('questionBox');
+    const answerButtons = document.getElementById('answerButtons');
+
+    const questions = [
+      "Do you want to hang out this weekend? 🥰",
+      "Do you want to watch a movie together? 🍿",
+      "Do you want to go for a little adventure? 🌸",
+      "Yay! Can't wait to spend time with you! 💖"
+    ];
+    let currentQuestion = 0;
+
+    function typeQuestion(text, callback) {
+      questionBox.textContent = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        questionBox.textContent += text[i];
+        i++;
+        if (i === text.length) {
+          clearInterval(interval);
+          if (callback) callback();
+        }
+      }, 50);
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight - 100 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    }
+
+    function showAnswers() {
+      answerButtons.innerHTML = "";
+      const yesBtn = document.createElement('button');
+      yesBtn.textContent = "Yes 💖";
+      const noBtn = document.createElement('button');
+      noBtn.textContent = "No 😢";
+
+      yesBtn.addEventListener('click', () => {
+        sound.play();
+        createHeart();
+        nextQuestion();
+      });
+      noBtn.addEventListener('click', () => {
+        questionBox.textContent = "Aww, maybe next time 😢";
+        answerButtons.innerHTML = "";
+      });
+
+      answerButtons.appendChild(yesBtn);
+      answerButtons.appendChild(noBtn);
+    }
+
+    function nextQuestion() {
+      if(currentQuestion < questions.length) {
+        typeQuestion(questions[currentQuestion], showAnswers);
+        currentQuestion++;
+      } else {
+        questionBox.textContent = "Yay! Everything is perfect! 🥰";
+        answerButtons.innerHTML = "";
+      }
+    }
+
+    startButton.addEventListener('click', () => {
+      sound.play();
+      createHeart();
+      startButton.style.display = 'none';
+      nextQuestion();
+    });
+  </script>
+
+</body>
+</html>
